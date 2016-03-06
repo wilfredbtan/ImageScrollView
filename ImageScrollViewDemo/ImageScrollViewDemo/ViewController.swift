@@ -7,19 +7,38 @@
 //
 
 import UIKit
+import ImageScrollView
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var imageScrollView: ImageScrollView!
+    var images = [UIImage]()
+    var index = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        for i in 0..<5 {
+            if let image = UIImage(named: "dog-\(i).jpg") {
+                images.append(image)
+            }
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        imageScrollView.displayImage(images[index])
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func previousButtonTap(sender: AnyObject) {
+        index = (index - 1 + images.count)%images.count
+        imageScrollView.displayImage(images[index])
     }
-
-
+    
+    @IBAction func nextButtonTap(sender: AnyObject) {
+        index = (index + 1)%images.count
+        imageScrollView.displayImage(images[index])
+    }
+    
 }
 
