@@ -156,7 +156,7 @@ public class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         zoomView!.userInteractionEnabled = true
         addSubview(zoomView!)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: "doubleTapGestureRecognizer:")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ImageScrollView.doubleTapGestureRecognizer(_:)))
         tapGesture.numberOfTapsRequired = 2
         zoomView!.addGestureRecognizer(tapGesture)
         
