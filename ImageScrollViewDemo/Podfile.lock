@@ -1,14 +1,16 @@
 PODS:
-  - ImageScrollView (1.0)
+  - ImageScrollView (1.1)
 
 DEPENDENCIES:
   - ImageScrollView (from `../`)
 
 EXTERNAL SOURCES:
   ImageScrollView:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  ImageScrollView: 010ef269c7481e7506e5790eb61987cc8ed403ee
+  ImageScrollView: 2c9adef18c5b6bd9a499c9babaf4cd7b6df703eb
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 8e836f7f52da4ac0f2f533b10582a69d9a3de51b
+
+COCOAPODS: 1.0.1
