@@ -52,8 +52,7 @@ public class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         delegate = self
     }
     
-    override public func layoutSubviews() {
-        super.layoutSubviews()
+    func adjustFrameToCenter() {
         
         guard zoomView != nil else {
             return
@@ -133,6 +132,10 @@ public class ImageScrollView: UIScrollView, UIScrollViewDelegate {
     
     public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return zoomView
+    }
+    
+    public func scrollViewDidZoom(scrollView: UIScrollView) {
+        adjustFrameToCenter()
     }
     
     // MARK: - Display image
