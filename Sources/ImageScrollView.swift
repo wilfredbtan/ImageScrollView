@@ -17,7 +17,6 @@ public class ImageScrollView: UIScrollView, UIScrollViewDelegate {
     private var pointToCenterAfterResize: CGPoint = CGPointZero
     private var scaleToRestoreAfterResize: CGFloat = 1.0
     var maxScaleFromMinScale: CGFloat = 3.0
-    private var isNeedAnimateWhileSetZoomViewFrame = false
     
     override public var frame: CGRect {
         willSet {
@@ -78,15 +77,7 @@ public class ImageScrollView: UIScrollView, UIScrollViewDelegate {
             frameToCenter.origin.y = 0
         }
         
-        if isNeedAnimateWhileSetZoomViewFrame {
-            isNeedAnimateWhileSetZoomViewFrame = false
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.zoomView!.frame = frameToCenter
-            })
-        }
-        else {
-            zoomView!.frame = frameToCenter
-        }
+        zoomView!.frame = frameToCenter
     }
     
     private func prepareToResize() {
@@ -204,8 +195,6 @@ public class ImageScrollView: UIScrollView, UIScrollViewDelegate {
             let zoomRect = zoomRectForScale(ImageScrollView.kZoomInFactorFromMinWhenDoubleTap * minimumZoomScale, center: center)
             zoomToRect(zoomRect, animated: true)
         }
-        
-        isNeedAnimateWhileSetZoomViewFrame = true
     }
     
     private func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
