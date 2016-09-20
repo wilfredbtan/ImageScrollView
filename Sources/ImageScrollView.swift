@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class ImageScrollView: UIScrollView {
+open class ImageScrollView: UIScrollView {
     
     static let kZoomInFactorFromMinWhenDoubleTap: CGFloat = 2
     
     var zoomView: UIImageView? = nil
     var imageSize: CGSize = CGSize.zero
-    private var pointToCenterAfterResize: CGPoint = CGPoint.zero
-    private var scaleToRestoreAfterResize: CGFloat = 1.0
+    fileprivate var pointToCenterAfterResize: CGPoint = CGPoint.zero
+    fileprivate var scaleToRestoreAfterResize: CGFloat = 1.0
     var maxScaleFromMinScale: CGFloat = 3.0
     
-    override public var frame: CGRect {
+    override open var frame: CGRect {
         willSet {
             if frame.equalTo(newValue) == false && newValue.equalTo(CGRect.zero) == false && imageSize.equalTo(CGSize.zero) == false {
                 prepareToResize()
@@ -44,7 +44,7 @@ public class ImageScrollView: UIScrollView {
         initialize()
     }
     
-    private func initialize() {
+    fileprivate func initialize() {
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
         bouncesZoom = true
@@ -79,7 +79,7 @@ public class ImageScrollView: UIScrollView {
         zoomView!.frame = frameToCenter
     }
     
-    private func prepareToResize() {
+    fileprivate func prepareToResize() {
         let boundsCenter = CGPoint(x: bounds.midX, y: bounds.midY)
         pointToCenterAfterResize = convert(boundsCenter, to: zoomView)
         
@@ -92,7 +92,7 @@ public class ImageScrollView: UIScrollView {
         }
     }
     
-    private func recoverFromResizing() {
+    fileprivate func recoverFromResizing() {
         setMaxMinZoomScalesForCurrentBounds()
         
         // restore zoom scale, first making sure it is within the allowable range.
@@ -120,17 +120,17 @@ public class ImageScrollView: UIScrollView {
         contentOffset = offset
     }
     
-    private func maximumContentOffset() -> CGPoint {
+    fileprivate func maximumContentOffset() -> CGPoint {
         return CGPoint(x: contentSize.width - bounds.width,y:contentSize.height - bounds.height)
     }
     
-    private func minimumContentOffset() -> CGPoint {
+    fileprivate func minimumContentOffset() -> CGPoint {
         return CGPoint.zero
     }
 
     // MARK: - Display image
     
-    public func displayImage(image: UIImage) {
+    open func display(image image: UIImage) {
 
         if let zoomView = zoomView {
             zoomView.removeFromSuperview()
@@ -140,14 +140,14 @@ public class ImageScrollView: UIScrollView {
         zoomView!.isUserInteractionEnabled = true
         addSubview(zoomView!)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.doubleTapGestureRecognizer(gestureRecognizer:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ImageScrollView.doubleTapGestureRecognizer(_:)))
         tapGesture.numberOfTapsRequired = 2
         zoomView!.addGestureRecognizer(tapGesture)
         
-        configureImageForSize(size: image.size)
+        configureImageForSize(image.size)
     }
     
-    private func configureImageForSize(size: CGSize) {
+    fileprivate func configureImageForSize(_ size: CGSize) {
         imageSize = size
         contentSize = imageSize
         setMaxMinZoomScalesForCurrentBounds()
@@ -155,7 +155,7 @@ public class ImageScrollView: UIScrollView {
         contentOffset = CGPoint.zero
     }
     
-    private func setMaxMinZoomScalesForCurrentBounds() {
+    fileprivate func setMaxMinZoomScalesForCurrentBounds() {
         // calculate min/max zoomscale
         let xScale = bounds.width / imageSize.width    // the scale needed to perfectly fit the image width-wise
         let yScale = bounds.height / imageSize.height   // the scale needed to perfectly fit the image height-wise
@@ -178,19 +178,19 @@ public class ImageScrollView: UIScrollView {
     
     // MARK: - Gesture
     
-    @objc private func doubleTapGestureRecognizer(gestureRecognizer: UIGestureRecognizer) {
+    func doubleTapGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
         // zoom out if it bigger than middle scale point. Else, zoom in
         if zoomScale >= maximumZoomScale / 2.0 {
             setZoomScale(minimumZoomScale, animated: true)
         }
         else {
             let center = gestureRecognizer.location(in: gestureRecognizer.view)
-            let zoomRect = zoomRectForScale(scale: ImageScrollView.kZoomInFactorFromMinWhenDoubleTap * minimumZoomScale, center: center)
+            let zoomRect = zoomRectForScale(ImageScrollView.kZoomInFactorFromMinWhenDoubleTap * minimumZoomScale, center: center)
             zoom(to: zoomRect, animated: true)
         }
     }
     
-    private func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
+    fileprivate func zoomRectForScale(_ scale: CGFloat, center: CGPoint) -> CGRect {
         var zoomRect = CGRect.zero
         
         // the zoom rect is in the content view's coordinates.
@@ -206,9 +206,9 @@ public class ImageScrollView: UIScrollView {
         return zoomRect
     }
     
-    public func refresh() {
+    open func refresh() {
         if let image = zoomView?.image {
-            displayImage(image: image)
+            display(image: image)
         }
     }
 }

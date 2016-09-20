@@ -27,17 +27,17 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        imageScrollView.displayImage(image: images[index])
+        imageScrollView.display(image: images[index])
     }
 
     @IBAction func previousButtonTap(_ sender: AnyObject) {
         index = (index - 1 + images.count)%images.count
-        imageScrollView.displayImage(image: images[index])
+        imageScrollView.display(image: images[index])
     }
     
     @IBAction func nextButtonTap(_ sender: AnyObject) {
         index = (index + 1)%images.count
-        imageScrollView.displayImage(image: images[index])
+        imageScrollView.display(image: images[index])
     }
     
 }
