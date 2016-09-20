@@ -9,7 +9,7 @@ This control help you display image, with zoomable and scrollable feature easily
 #### Compatible
 
 - iOS 7 and later (require iOS 8 if you want to add it to project using CocoaPod)
-- Swift 2.0
+- Swift 3.0 (version 1.3), 2.0 (version 1.2 and prior)
 
 ### Usage
 
@@ -28,7 +28,7 @@ Note: If above pod isn't working, try using below pod defination in Podfile:
 In iOS 7, you cannot use Cocoapod to install. In this case, you need add it manually. Simply, add file `ImageSrollView.swift` in folder `Sources` to your project
 
 #### Simple to use
-Drag an UIScrollView to your storyboard, change class in Identity Inspector to ImageScrollView. Also create an IBOutlet in your source file.
+Drag an UIScrollView to your storyboard, change Class and Module in Identity Inspector to ImageScrollView. Also create an IBOutlet in your source file.
 
 ![image](http://s10.postimg.org/jd12ztvkp/Tut1.jpg)
 
@@ -41,8 +41,8 @@ import ImageScrollView
 ```
 
 ```
-let image = UIImage(named: "my_image_name")
-imageScrollView.displayImage(image)
+let myImage = UIImage(named: "my_image_name")
+imageScrollView.display(image: myImage)
 ```
 That's all. Now try zooming and scrolling to see the result.
 ### About this source
