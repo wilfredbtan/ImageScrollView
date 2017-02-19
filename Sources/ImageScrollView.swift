@@ -12,7 +12,7 @@ open class ImageScrollView: UIScrollView {
     
     static let kZoomInFactorFromMinWhenDoubleTap: CGFloat = 2
     
-    var zoomView: UIImageView? = nil
+    public private(set) var zoomView: UIImageView? = nil
     var imageSize: CGSize = CGSize.zero
     fileprivate var pointToCenterAfterResize: CGPoint = CGPoint.zero
     fileprivate var scaleToRestoreAfterResize: CGFloat = 1.0
