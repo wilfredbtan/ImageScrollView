@@ -54,11 +54,11 @@ open class ImageScrollView: UIScrollView {
     
     public func adjustFrameToCenter() {
         
-        guard zoomView != nil else {
+        guard let unwrappedZoomView = zoomView else {
             return
         }
         
-        var frameToCenter = zoomView!.frame
+        var frameToCenter = unwrappedZoomView.frame
         
         // center horizontally
         if frameToCenter.size.width < bounds.width {
@@ -76,7 +76,7 @@ open class ImageScrollView: UIScrollView {
             frameToCenter.origin.y = 0
         }
         
-        zoomView!.frame = frameToCenter
+        unwrappedZoomView.frame = frameToCenter
     }
     
     fileprivate func prepareToResize() {
