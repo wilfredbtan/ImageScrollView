@@ -52,7 +52,7 @@ open class ImageScrollView: UIScrollView {
         delegate = self
     }
     
-    func adjustFrameToCenter() {
+    public func adjustFrameToCenter() {
         
         guard zoomView != nil else {
             return
