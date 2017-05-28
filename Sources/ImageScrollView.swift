@@ -12,6 +12,7 @@ open class ImageScrollView: UIScrollView {
     
     static let kZoomInFactorFromMinWhenDoubleTap: CGFloat = 2
     
+    public var landscapeAspectFill = true;
     var zoomView: UIImageView? = nil
     var imageSize: CGSize = CGSize.zero
     fileprivate var pointToCenterAfterResize: CGPoint = CGPoint.zero
@@ -163,7 +164,7 @@ open class ImageScrollView: UIScrollView {
         // fill width if the image and phone are both portrait or both landscape; otherwise take smaller scale
         let imagePortrait = imageSize.height > imageSize.width
         let phonePortrait = bounds.height >= bounds.width
-        var minScale = (imagePortrait == phonePortrait) ? xScale : min(xScale, yScale)
+        var minScale = (imagePortrait == phonePortrait && self.landscapeAspectFill) ? xScale : min(xScale, yScale)
         
         let maxScale = maxScaleFromMinScale*minScale
         
