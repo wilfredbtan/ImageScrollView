@@ -13,7 +13,8 @@ open class ImageScrollView: UIScrollView {
     static let kZoomInFactorFromMinWhenDoubleTap: CGFloat = 2
     
     public var landscapeAspectFill = true; // If TRUE, the ImageScrollView will have an 'aspect fill' behavior when in landscape orientation. Otherwise, it will be aspect fit, so that the image isn't zoomed in to fit the width of the display.
-    var zoomView: UIImageView? = nil
+    public private(set) var zoomView: UIImageView? = nil
+
     var imageSize: CGSize = CGSize.zero
     fileprivate var pointToCenterAfterResize: CGPoint = CGPoint.zero
     fileprivate var scaleToRestoreAfterResize: CGFloat = 1.0
@@ -53,13 +54,13 @@ open class ImageScrollView: UIScrollView {
         delegate = self
     }
     
-    func adjustFrameToCenter() {
+    public func adjustFrameToCenter() {
         
-        guard zoomView != nil else {
+        guard let unwrappedZoomView = zoomView else {
             return
         }
         
-        var frameToCenter = zoomView!.frame
+        var frameToCenter = unwrappedZoomView.frame
         
         // center horizontally
         if frameToCenter.size.width < bounds.width {
@@ -77,7 +78,7 @@ open class ImageScrollView: UIScrollView {
             frameToCenter.origin.y = 0
         }
         
-        zoomView!.frame = frameToCenter
+        unwrappedZoomView.frame = frameToCenter
     }
     
     fileprivate func prepareToResize() {
@@ -131,7 +132,7 @@ open class ImageScrollView: UIScrollView {
 
     // MARK: - Display image
     
-    open func display(image image: UIImage) {
+    open func display(image: UIImage) {
 
         if let zoomView = zoomView {
             zoomView.removeFromSuperview()
