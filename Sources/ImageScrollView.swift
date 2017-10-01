@@ -89,7 +89,7 @@ open class ImageScrollView: UIScrollView {
         
         // If we're at the minimum zoom scale, preserve that by returning 0, which will be converted to the minimum
         // allowable scale when the scale is restored.
-        if scaleToRestoreAfterResize <= minimumZoomScale + CGFloat(FLT_EPSILON) {
+        if scaleToRestoreAfterResize <= minimumZoomScale + CGFloat(Float.ulpOfOne) {
             scaleToRestoreAfterResize = 0
         }
     }
