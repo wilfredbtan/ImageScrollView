@@ -45,6 +45,13 @@ let myImage = UIImage(named: "my_image_name")
 imageScrollView.display(image: myImage)
 ```
 That's all. Now try zooming and scrolling to see the result.
+
+Note: If your image is aligned left instead of center, try calling below method:
+
+```superViewOfImageScrollView.layoutIfNeeded()```
+
+`superViewOfImageScrollView` is the view that ImageScrollView is added to.
+
 ### About this source
 This open source is based on PhotoScroller demo avaiable on Apple's site. The original source is written in Objective C. This source rewrite uses Swift, and adds some new features:
 - Double tap to zoom feature.
