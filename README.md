@@ -9,7 +9,7 @@ This control help you display image, with zoomable and scrollable features easil
 #### Compatible
 
 - iOS 7 and later (requires iOS 8 if you want to add it to project using CocoaPod)
-- Swift 3.0 (version 1.3), 2.0 (version 1.2 and prior)
+- Swift 4.2 (for earlier Swift version, please use earlier ImageScrollView version).
 
 ### Usage
 
@@ -46,15 +46,19 @@ imageScrollView.display(image: myImage)
 ```
 That's all. Now try zooming and scrolling to see the result.
 
-Note: If your image is aligned left instead of center, try calling below method:
+### Note: 
+
+- If your image is aligned left instead of center, try calling below method:
 
 ```superViewOfImageScrollView.layoutIfNeeded()```
 
 `superViewOfImageScrollView` is the view that ImageScrollView is added to.
 
+- If you add the ImageScrollView by code, then your image can't display after calling `display(image:)` method, make sure your `ImageScrollView` has updated its size. Try to call `view.layoutIfNeeded()` before, or try to call `display(image:)` in `viewDidAppear`
+
 ### About this source
-This open source is based on PhotoScroller demo avaiable on Apple's site. The original source is written in Objective C. This source rewrite uses Swift, and adds some new features:
-- Double tap to zoom feature.
+This open source is based on PhotoScroller demo avaiable on Apple's site. The original source was written in Objective C. This open source rewrote it by using Swift, and added some new features:
+- Double tap to zoom.
 - Smoother. Fixed bug when zooming out, the control auto zooms from center, and not from the corner.
 
 ### License
