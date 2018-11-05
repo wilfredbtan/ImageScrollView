@@ -266,7 +266,10 @@ open class ImageScrollView: UIScrollView {
     // MARK: - Actions
     
     @objc func changeOrientationNotification() {
-        configureImageForSize(imageSize)
+        // A weird bug that frames are not update right after orientation changed. Need delay a little bit with async.
+        DispatchQueue.main.async {
+            self.configureImageForSize(self.imageSize)
+        }
     }
 }
 
