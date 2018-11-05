@@ -46,6 +46,28 @@ imageScrollView.display(image: myImage)
 ```
 That's all. Now try zooming and scrolling to see the result.
 
+You can set delegate to catch event. This delegate is inheritted from `UIScrollViewDelegate`.
+
+```
+imageScrollView.imageScrollViewDelegate = self
+```
+
+```
+extension ViewController: ImageScrollViewDelegate {
+    func imageScrollViewDidChangeOrientation(imageScrollView: ImageScrollView) {
+        print("Did change orientation")
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        print("scrollViewDidEndZooming at scale \(scale)")
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("scrollViewDidScroll at offset \(scrollView.contentOffset)")
+    }
+}
+```
+
 ### Note: 
 
 - If your image is aligned left instead of center, try calling below method:
