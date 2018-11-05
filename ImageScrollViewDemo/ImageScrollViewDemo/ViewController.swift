@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imageScrollView.imageScrollViewDelegate = self
+        
         for i in 0..<5 {
             if let image = UIImage(named: "dog-\(i).jpg") {
                 images.append(image)
@@ -44,3 +46,12 @@ class ViewController: UIViewController {
     
 }
 
+extension ViewController: UIScrollViewDelegate {
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        print("scrollViewDidEndZooming at scale \(scale)")
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("scrollViewDidScroll at offset \(scrollView.contentOffset)")
+    }
+}
