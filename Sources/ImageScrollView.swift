@@ -8,6 +8,14 @@
 
 import UIKit
 
+@objc public protocol ImageScrollViewDelegate: UIScrollViewDelegate {
+    func imageScrollViewDidChangeOrientation(imageScrollView: ImageScrollView)
+}
+
+public extension ImageScrollViewDelegate {
+    func imageScrollViewDidChangeOrientation(imageScrollView: ImageScrollView) {}
+}
+
 open class ImageScrollView: UIScrollView {
     
     @objc public enum ScaleMode: Int {
@@ -29,7 +37,7 @@ open class ImageScrollView: UIScrollView {
     
     @objc public private(set) var zoomView: UIImageView? = nil
     
-    @objc open weak var imageScrollViewDelegate: UIScrollViewDelegate?
+    @objc open weak var imageScrollViewDelegate: ImageScrollViewDelegate?
 
     var imageSize: CGSize = CGSize.zero
     private var pointToCenterAfterResize: CGPoint = CGPoint.zero
@@ -269,6 +277,7 @@ open class ImageScrollView: UIScrollView {
         // A weird bug that frames are not update right after orientation changed. Need delay a little bit with async.
         DispatchQueue.main.async {
             self.configureImageForSize(self.imageSize)
+            self.imageScrollViewDelegate?.imageScrollViewDidChangeOrientation(imageScrollView: self)
         }
     }
 }
