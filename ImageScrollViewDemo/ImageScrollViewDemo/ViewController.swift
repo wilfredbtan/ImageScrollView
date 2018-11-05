@@ -47,6 +47,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: ImageScrollViewDelegate {
+    func imageScrollViewDidChangeOrientation(imageScrollView: ImageScrollView) {
+        print("Did change orientation")
+    }
+    
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         print("scrollViewDidEndZooming at scale \(scale)")
     }
