@@ -12,10 +12,6 @@ import UIKit
     func imageScrollViewDidChangeOrientation(imageScrollView: ImageScrollView)
 }
 
-public extension ImageScrollViewDelegate {
-    func imageScrollViewDidChangeOrientation(imageScrollView: ImageScrollView) {}
-}
-
 open class ImageScrollView: UIScrollView {
     
     @objc public enum ScaleMode: Int {
