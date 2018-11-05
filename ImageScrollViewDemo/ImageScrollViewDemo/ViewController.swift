@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UIScrollViewDelegate {
+extension ViewController: ImageScrollViewDelegate {
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         print("scrollViewDidEndZooming at scale \(scale)")
     }
