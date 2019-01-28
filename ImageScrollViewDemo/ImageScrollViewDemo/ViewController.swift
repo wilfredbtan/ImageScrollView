@@ -18,17 +18,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageScrollView.imageScrollViewDelegate = self
-        
         for i in 0..<5 {
             if let image = UIImage(named: "dog-\(i).jpg") {
                 images.append(image)
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
+        imageScrollView.setup()
+        imageScrollView.imageScrollViewDelegate = self
         imageScrollView.imageContentMode = .aspectFit
         imageScrollView.initialOffset = .center
         imageScrollView.display(image: images[index])
