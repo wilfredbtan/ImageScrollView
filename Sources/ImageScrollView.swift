@@ -155,6 +155,19 @@ open class ImageScrollView: UIScrollView {
     private func minimumContentOffset() -> CGPoint {
         return CGPoint.zero
     }
+    
+    // MARK: - Set up
+    
+    open func setup() {
+        var topSupperView = superview
+        
+        while topSupperView?.superview != nil {
+            topSupperView = topSupperView?.superview
+        }
+        
+        // Make sure views have already layout with precise frame
+        topSupperView?.layoutIfNeeded()
+    }
 
     // MARK: - Display image
     
