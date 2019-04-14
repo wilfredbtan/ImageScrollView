@@ -10,8 +10,8 @@ This control will help you to display images, with zoomable and scrollable featu
 
 #### Compatible
 
-- iOS 8 and later.
-- Swift 4.2 and later (for earlier Swift version, please use earlier ImageScrollView version. You can see the supported Swift version in the file `.swift-version`).
+- iOS 9 and later.
+- Swift 5.0 and later (for earlier Swift version, please use earlier ImageScrollView version).
 
 ### Usage
 
